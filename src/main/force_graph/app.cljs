@@ -1,4 +1,4 @@
-(ns shadow-reagent.app
+(ns force-graph.app
   (:require [reagent.dom :as rdom]))
 
 (defn square-root
@@ -7,7 +7,7 @@
 
 (defn app []
   [:div#app
-   [:h1 "shadow-cljs reagent template"]])
+   [:h1 "Force graph"]])
 
 (defn render []
   (rdom/render [app]
