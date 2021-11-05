@@ -25,3 +25,79 @@ clj꞉shadow.user꞉> 
 ;    (There is a button in the status bar for this)
 ; Jack-in done.
 cljs꞉cljs.user꞉> 
+#object[SVGTextElement [object SVGTextElement]]
+clj꞉force-graph.app꞉> 
+nil
+clj꞉force-graph.app꞉> 
+#object[SVGAnimatedLength [object SVGAnimatedLength]]
+clj꞉force-graph.app꞉> 
+100
+clj꞉force-graph.app꞉> 
+100
+clj꞉force-graph.app꞉> 
+100
+clj꞉force-graph.app꞉> 
+#object[SVGRect [object SVGRect]]
+clj꞉force-graph.app꞉> 
+116.625
+clj꞉force-graph.app꞉> 
+74.65625
+clj꞉force-graph.app꞉> 
+74.65625
+clj꞉force-graph.app꞉> 
+nil
+; ------ WARNING - :fn-arity -----------------------------------------------------
+;  Resource: <eval>:1:1
+ Wrong number of args (2) passed to cljs.core/rand-int
+--------------------------------------------------------------------------------
+
+clj꞉force-graph.app꞉> 
+9
+clj꞉force-graph.app꞉> 
+7
+clj꞉force-graph.app꞉> 
+278
+clj꞉force-graph.app꞉> 
+164
+clj꞉force-graph.app꞉> 
+152
+clj꞉force-graph.app꞉> 
+53
+clj꞉force-graph.app꞉> 
+176
+clj꞉force-graph.app꞉> 
+185
+clj꞉force-graph.app꞉> 
+nil
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:7:14
+ Use of undeclared Var force-graph.app/label
+--------------------------------------------------------------------------------
+
+; ------ WARNING - :undeclared-var -----------------------------------------------
+;  Resource: <eval>:7:14
+ Use of undeclared Var force-graph.app/label
+--------------------------------------------------------------------------------
+
+clj꞉force-graph.app꞉> 
+[[:text {:id "Erinaceidae", :x 30, :y 121, :dy "1em", :text-anchor "left", :font-size "12px"} "Erinaceidae"] [:text {:id "Hemiechinus", :x 83, :y 264, :dy "1em", :text-anchor "left", :font-size "12px"} "Hemiechinus"] [:text {:id "Animalia", :x 323, :y 173, :dy "1em", :text-anchor "left", :font-size "12px"} "Animalia"] [:text {:id "Erinaceomorpha", :x 298, :y 255, :dy "1em", :text-anchor "left", :font-size "12px"} "Erinaceomorpha"] [:text {:id "Chordata", :x 200, :y 54, :dy "1em", :text-anchor "left", :font-size "12px"} "Chordata"] [:text {:id "Mesechinus", :x 90, :y 7, :dy "1em", :text-anchor "left", :font-size "12px"} "Mesechinus"] [:text {:id "Paraechinus", :x 34, :y 91, :dy "1em", :text-anchor "left", :font-size "12px"} "Paraechinus"] [:text {:id "Mammalia", :x 161, :y 253, :dy "1em", :text-anchor "left", :font-size "12px"} "Mammalia"] [:text {:id "Erinaceus", :x 101, :y 96, :dy "1em", :text-anchor "left", :font-size "12px"} "Erinaceus"] [:text {:id "Atelerix", :x 64, :y 238, :dy "1em", :text-anchor "left", :font-size "12px"} "Atelerix"] [:text {:id "Erinaceinae", :x 328, :y 148, :dy "1em", :text-anchor "left", :font-size "12px"} "Erinaceinae"]]
+clj꞉force-graph.app꞉> 
+"Erinaceidae"
+clj꞉force-graph.app꞉> 
+56.609375
+clj꞉force-graph.app꞉> 
+259
+clj꞉force-graph.app꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+Cannot read properties of null (reading 'getBBox')
+clj꞉force-graph.app꞉> 
+({"Erinaceidae" [178 340]} {"Hemiechinus" [280 123]} {"Animalia" [340 341]} {"Erinaceomorpha" [107 126]} {"Chordata" [20 217]} {"Mesechinus" [23 129]} {"Paraechinus" [310 203]} {"Mammalia" [188 267]} {"Erinaceus" [156 327]} {"Atelerix" [223 92]} {"Erinaceinae" [263 306]})
+clj꞉force-graph.app꞉> 
+[{"Erinaceidae" [23 257]} {"Hemiechinus" [250 240]} {"Animalia" [294 188]} {"Erinaceomorpha" [146 243]} {"Chordata" [268 102]} {"Mesechinus" [154 0]} {"Paraechinus" [47 137]} {"Mammalia" [340 208]} {"Erinaceus" [166 275]} {"Atelerix" [190 269]} {"Erinaceinae" [45 218]}]
+clj꞉force-graph.app꞉> 
+{"Erinaceidae" [303 271], "Hemiechinus" [172 29], "Animalia" [203 36], "Erinaceomorpha" [130 310], "Chordata" [66 7], "Mesechinus" [5 323], "Paraechinus" [299 129], "Mammalia" [58 34], "Erinaceus" [131 101], "Atelerix" [259 146], "Erinaceinae" [289 5]}
+clj꞉force-graph.app꞉> 
+[303 271]
+clj꞉force-graph.app꞉> 
