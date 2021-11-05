@@ -101,3 +101,37 @@ clj꞉force-graph.app꞉> 
 clj꞉force-graph.app꞉> 
 [303 271]
 clj꞉force-graph.app꞉> 
+56.625
+clj꞉force-graph.app꞉> 
+{"Erinaceidae" 80, "Hemiechinus" 80, "Animalia" 80, "Erinaceomorpha" 80, "Chordata" 80, "Mesechinus" 80, "Paraechinus" 80, "Mammalia" 80, "Erinaceus" 80, "Atelerix" 80, "Erinaceinae" 80}
+clj꞉force-graph.app꞉> 
+{"Erinaceidae" 80, "Hemiechinus" 80, "Animalia" 80, "Erinaceomorpha" 80, "Chordata" 80, "Mesechinus" 80, "Paraechinus" 80, "Mammalia" 80, "Erinaceus" 80, "Atelerix" 80, "Erinaceinae" 80}
+clj꞉force-graph.app꞉> 
+{"Erinaceidae" 80, "Hemiechinus" 80, "Animalia" 80, "Erinaceomorpha" 80, "Chordata" 80, "Mesechinus" 80, "Paraechinus" 80, "Mammalia" 80, "Erinaceus" 80, "Atelerix" 80, "Erinaceinae" 80}
+clj꞉force-graph.app꞉> 
+nil
+; ------ WARNING - :fn-arity -----------------------------------------------------
+;  Resource: <eval>:1:1
+ Wrong number of args (0) passed to force-graph.app/update!
+--------------------------------------------------------------------------------
+
+clj꞉force-graph.app꞉> 
+{"Erinaceidae" 80, "Hemiechinus" 80, "Animalia" 80, "Erinaceomorpha" 80, "Chordata" 80, "Mesechinus" 80, "Paraechinus" 80, "Mammalia" 80, "Erinaceus" 80, "Atelerix" 80, "Erinaceinae" 80}
+clj꞉force-graph.app꞉> 
+:repl/exception!
+; 
+; Execution error (Error) at (<cljs repl>:1).
+No protocol method ISwap.-swap! defined for type cljs.core/PersistentHashMap: {"Erinaceidae" 80, "Hemiechinus" 80, "Animalia" 80, "Erinaceomorpha" 80, "Chordata" 80, "Mesechinus" 80, "Paraechinus" 80, "Mammalia" 80, "Erinaceus" 80, "Atelerix" 80, "Erinaceinae" 80}
+clj꞉force-graph.app꞉> 
+2508
+clj꞉force-graph.app꞉> 
+2673
+clj꞉force-graph.app꞉> 
+2761
+clj꞉force-graph.app꞉> 
+209
+clj꞉force-graph.app꞉> 
+418
+clj꞉force-graph.app꞉> 
+{"Erinaceidae" 56.625, "Hemiechinus" 63.328125, "Animalia" 80, "Erinaceomorpha" 80, "Chordata" 80, "Mesechinus" 80, "Paraechinus" 80, "Mammalia" 80, "Erinaceus" 80, "Atelerix" 80, "Erinaceinae" 80}
+clj꞉force-graph.app꞉> 

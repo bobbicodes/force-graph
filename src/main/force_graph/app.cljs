@@ -23,7 +23,7 @@
 (defn label
   [name x y]
    [:text {:id name
-           :x (+ 5 x) :y y :dy "1em"  :text-anchor "left"
+           :x (+ 3 x) :y y :dy "1em"  :text-anchor "left"
            :font-size "12px"
            :fill "white"} name])
 
@@ -56,7 +56,10 @@
                 (for [name (keys hedgehogs)]
                   {name [(rand-int 350) (rand-int 350)]}))))
 
-@positions
+(defonce widths
+  (r/atom (into {}
+                (for [name (keys hedgehogs)]
+                  {name 80}))))
 
 (get @positions "Erinaceidae")
 
@@ -67,7 +70,7 @@
     (into [:g]
           (for [name (keys hedgehogs)]
             (rect (first (get @positions name))
-                  (last (get @positions name)) 100 17)))
+                  (last (get @positions name)) (get @widths name) 17)))
     (into [:g]
           (for [name (keys hedgehogs)]
             (label name (first (get @positions name)) 
@@ -82,6 +85,20 @@
       .getBBox
       .-x)
   )
+
+(defonce counter (r/atom 0))
+
+(defn update! []
+  (doseq [name (keys hedgehogs)]
+    (when (< @counter 20)
+      (swap! widths assoc name (+ 6 (width name))))
+    (swap! counter inc)))
+
+(js/setInterval update! 100)
+
+@widths
+
+@counter
 
 (defn render []
   (rdom/render [app]
