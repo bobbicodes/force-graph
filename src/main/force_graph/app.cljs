@@ -45,32 +45,19 @@
                   {name {:x (rand-int 350) :y (rand-int 350)
                          :width 80}}))))
 
-(defonce positions 
-  (r/atom (into {}
-                (for [name (keys hedgehogs)]
-                  {name [(rand-int 350) (rand-int 350)]}))))
-
-(defonce widths
-  (r/atom (into {}
-                (for [name (keys hedgehogs)]
-                  {name 80}))))
-
-(get @positions "Erinaceidae")
-
-@nodes
-
 (defn app []
   [:div#app
    [:h1 "Force graph"]
    [:svg {:width "100%" :view-box "0 0 400 400"}
     (into [:g]
           (for [name (keys hedgehogs)]
-            (rect (first (get @positions name))
-                  (last (get @positions name)) (get @widths name) 13)))
+            (rect (:x (get @nodes name))
+                  (:y (get @nodes name)) 
+                  (:width (get @nodes name)) 13)))
     (into [:g]
           (for [name (keys hedgehogs)]
-            (label name (first (get @positions name)) 
-                   (last (get @positions name)))))
+            (label name (:x (get @nodes name)) 
+                   (:y (get @nodes name)))))
     ]])
             
 (comment
@@ -87,14 +74,10 @@
 (defn update! []
   (doseq [name (keys hedgehogs)]
     (when (< @counter 20)
-      (swap! widths assoc name (+ 6 (width name))))
+      (swap! nodes assoc-in [name :width] (+ 6 (width name))))
     (swap! counter inc)))
 
 (js/setInterval update! 100)
-
-@widths
-
-@counter
 
 (defn render []
   (rdom/render [app]
