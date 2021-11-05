@@ -135,3 +135,7 @@ clj꞉force-graph.app꞉> 
 clj꞉force-graph.app꞉> 
 {"Erinaceidae" 56.625, "Hemiechinus" 63.328125, "Animalia" 80, "Erinaceomorpha" 80, "Chordata" 80, "Mesechinus" 80, "Paraechinus" 80, "Mammalia" 80, "Erinaceus" 80, "Atelerix" 80, "Erinaceinae" 80}
 clj꞉force-graph.app꞉> 
+{"Erinaceidae" {:x 71, :y 11, :width 80}, "Hemiechinus" {:x 179, :y 193, :width 80}, "Animalia" {:x 320, :y 91, :width 80}, "Erinaceomorpha" {:x 75, :y 269, :width 80}, "Chordata" {:x 118, :y 4, :width 80}, "Mesechinus" {:x 109, :y 35, :width 80}, "Paraechinus" {:x 133, :y 295, :width 80}, "Mammalia" {:x 150, :y 107, :width 80}, "Erinaceus" {:x 347, :y 33, :width 80}, "Atelerix" {:x 127, :y 125, :width 80}, "Erinaceinae" {:x 307, :y 185, :width 80}}
+clj꞉force-graph.app꞉> 
+{"Erinaceidae" {:x 71, :y 11, :width 80}, "Hemiechinus" {:x 179, :y 193, :width 80}, "Animalia" {:x 320, :y 91, :width 80}, "Erinaceomorpha" {:x 75, :y 269, :width 80}, "Chordata" {:x 118, :y 4, :width 80}, "Mesechinus" {:x 109, :y 35, :width 80}, "Paraechinus" {:x 133, :y 295, :width 80}, "Mammalia" {:x 150, :y 107, :width 80}, "Erinaceus" {:x 347, :y 33, :width 80}, "Atelerix" {:x 127, :y 125, :width 80}, "Erinaceinae" {:x 307, :y 185, :width 80}}
+clj꞉force-graph.app꞉> 

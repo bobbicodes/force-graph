@@ -23,8 +23,8 @@
 (defn label
   [name x y]
    [:text {:id name
-           :x (+ 3 x) :y y :dy "1em"  :text-anchor "left"
-           :font-size "12px"
+           :x (+ 3 x) :y y :dy "0.9em"  :text-anchor "left"
+           :font-size "10px"
            :fill "white"} name])
 
 (defn rect
@@ -33,23 +33,17 @@
           :rx 5
           :width width :height height :fill "gray"}])
 
-(defn x [name]
-  (-> js/document
-      (.getElementById name)
-      .getBBox
-      .-x))
-
-(defn y [name]
-  (-> js/document
-      (.getElementById name)
-      .getBBox
-      .-y))
-
 (defn width [name]
   (-> js/document
       (.getElementById name)
       .getBBox
       .-width))
+
+(defonce nodes
+  (r/atom (into {}
+                (for [name (keys hedgehogs)]
+                  {name {:x (rand-int 350) :y (rand-int 350)
+                         :width 80}}))))
 
 (defonce positions 
   (r/atom (into {}
@@ -63,6 +57,8 @@
 
 (get @positions "Erinaceidae")
 
+@nodes
+
 (defn app []
   [:div#app
    [:h1 "Force graph"]
@@ -70,7 +66,7 @@
     (into [:g]
           (for [name (keys hedgehogs)]
             (rect (first (get @positions name))
-                  (last (get @positions name)) (get @widths name) 17)))
+                  (last (get @positions name)) (get @widths name) 13)))
     (into [:g]
           (for [name (keys hedgehogs)]
             (label name (first (get @positions name)) 
