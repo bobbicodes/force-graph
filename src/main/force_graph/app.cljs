@@ -35,6 +35,12 @@
   [n1 n2]
   (contains? (set (get hedgehogs n1)) n2))
 
+(defn jitter [d delta]
+  (if (< d 0.01)
+    ))
+
+(.random js/Math)
+
 (defn node-forces 
   "Takes the names of 2 nodes as strings, and outputs
    the force between them in the format of [forcex forcey]."
