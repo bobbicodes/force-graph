@@ -9,16 +9,18 @@
 
 (def hedgehogs
   {"Animalia" ["Chordata"]
-   "Chordata" ["Animalia" "Mammalia"]
-   "Mammalia" ["Chordata" "Erinaceomorpha"]
-   "Erinaceomorpha" ["Mammalia" "Erinaceidae"]
-   "Erinaceinae" ["Erinaceidae" "Atelerix" "Erinaceus" "Hemiechinus" "Mesechinus" "Paraechinus"]
-   "Atelerix" ["Erinaceinae"]
-   "Erinaceus" ["Erinaceinae"]
-   "Hemiechinus" ["Erinaceinae"]
-   "Mesechinus" ["Erinaceinae"]
-   "Paraechinus" ["Erinaceinae"]
-   "Erinaceidae" ["Erinaceomorpha" "Erinaceinae"]})
+   "Chordata" ["Mammalia"]
+   "Mammalia" ["Erinaceomorpha"]
+   "Erinaceomorpha" ["Erinaceidae"]
+"Erinaceidae" ["Erinaceinae"]
+   "Erinaceinae" [ "Atelerix" "Erinaceus" "Hemiechinus" "Mesechinus"
+                  "Paraechinus"]
+   
+   "Atelerix" []
+   "Erinaceus" []
+   "Hemiechinus" []
+   "Mesechinus" []
+   "Paraechinus" []})
 
 (defonce nodes
   (r/atom (into {}
@@ -27,7 +29,7 @@
                          :width 80}}))))
 
 (def repulsion 20000) ; adjust for wider/narrower spacing
-(def spring-length 100) ; base resting length of springs
+(def spring-length 20) ; base resting length of springs
 (def step-size 0.0005)
 
 (defn edge? 
