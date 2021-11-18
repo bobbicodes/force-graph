@@ -1,35 +1,56 @@
 (ns force-graph.app
   (:require 
    [reagent.core :as r]
-   [reagent.dom :as rdom]))
+   [reagent.dom :as rdom]
+   [force-graph.svg :as svg]))
+
+;; attempting to translate https://github.com/jackrusher/jssvggraph/blob/master/graph.js
 
 (defn square-root
   [x]
   (.sqrt js/Math x))
+
+(def building-supplies
+  {:nails {}
+   :planks {}
+   :bricks {}
+   :cement {}
+   :glue {}
+   :paint {}})
 
 (def hedgehogs
   {"Animalia" ["Chordata"]
    "Chordata" ["Mammalia"]
    "Mammalia" ["Erinaceomorpha"]
    "Erinaceomorpha" ["Erinaceidae"]
-"Erinaceidae" ["Erinaceinae"]
-   "Erinaceinae" [ "Atelerix" "Erinaceus" "Hemiechinus" "Mesechinus"
+   "Erinaceidae" ["Erinaceinae"]
+   "Erinaceinae" ["Atelerix" "Erinaceus" "Hemiechinus" "Mesechinus"
                   "Paraechinus"]
-   
    "Atelerix" []
    "Erinaceus" []
    "Hemiechinus" []
    "Mesechinus" []
    "Paraechinus" []})
 
+
+
 (defonce nodes
   (r/atom (into {}
-                (for [name (keys hedgehogs)]
-                  {name {:x (rand-int 350) :y (rand-int 350)
-                         :width 80}}))))
+                (for [name (keys svg/building-supplies)]
+                  {name {:x (rand-int 900) :y (rand-int 900)
+                         :width 50}}))))
 
-(def repulsion 20000) ; adjust for wider/narrower spacing
-(def spring-length 20) ; base resting length of springs
+(into {}
+      (for [name (keys svg/building-supplies)]
+        {name {:x (rand-int 900) :y (rand-int 900)
+               :width 50}}))
+
+@nodes
+
+
+
+(def repulsion 3000) ; adjust for wider/narrower spacing
+(def spring-length 30) ; base resting length of springs
 (def step-size 0.0005)
 
 (defn edge? 
@@ -91,32 +112,57 @@
 (:y (get @nodes "Chordata"))
 
 
-(defn draw-edges [node]
+(defn draw-edges [cx cy]
   (into [:g]
-        (let [edges (get hedgehogs node)]
+        (let [edges (keys svg/building-supplies)]
           (for [edge edges]
-            [:line {:x1 (+ (/ (width edge) 2) (:x (get @nodes node)))
-                    :y1 (+ 6 (:y (get @nodes node)))
-                    :x2 (+ (/ (width edge) 2)(:x (get @nodes edge)))
+            [:line {:x1 cx
+                    :y1 cy
+                    :x2 (+ 30 (:x (get @nodes edge)))
                     :y2 (+ 6 (:y (get @nodes edge)))
-                    :stroke "magenta"}]))))
+                    :stroke "magenta" :stroke-width 3}]))))
+
+(get @nodes :nails)
+
+
 
 (defonce counter (r/atom 0))
 
+(defn svg-paths
+  ([paths]
+   (svg-paths nil paths 0 0 1))
+  ([attrs paths]
+   (svg-paths attrs paths 0 0 1))
+  ([paths x y]
+   (svg-paths nil paths x y 1))
+  ([paths x y scale]
+   (svg-paths nil paths x y scale))
+  ([attrs paths x y scale]
+   (into [:g (merge attrs
+                    {:transform (str "scale(" scale ") translate(" x "," y ")")})]
+         (for [[color path] paths]
+           [:path {:stroke color :d path
+                   :shape-rendering "crispEdges"}]))))
+
+(keys @nodes)
 
 (defn app []
   [:div#app
    [:h1 "Force graph"]
-   [:svg {:width "100%" :view-box "0 0 400 400"}
-    (when (< 2 @counter)
-      (into [:g]
-            (map draw-edges (keys hedgehogs))))
-    (into [:g]
+   [:svg {:width "100%" :view-box "0 0 900 900"
+          :shape-rendering "crispEdges"}
+    (draw-edges 410 330)
+    (svg-paths (get svg/stores "Building Supplies") 350 300)
+    (into [:g]  
+          (for [node (keys @nodes)]
+            (svg-paths (node svg/building-supplies) (:x (get @nodes node)) (:y (get @nodes node)))))
+      
+    #_(into [:g]
           (for [name (keys hedgehogs)]
             (rect (:x (get @nodes name))
                   (:y (get @nodes name))
                   (:width (get @nodes name)) 13)))
-    (into [:g]
+    #_(into [:g]
           (for [name (keys hedgehogs)]
             (label name (:x (get @nodes name))
                    (:y (get @nodes name)))))]])
@@ -136,13 +182,11 @@
   (doseq [name (keys hedgehogs)]
     (if (< @counter 20)
       (swap! nodes assoc-in [name :width] (+ 6 (width name)))
-      (do (swap! nodes update-in [name :x] #(+ % (* step-size (first (node-force name)))))
-          (swap! nodes update-in [name :y] #(+ % (* step-size (last (node-force name))))))
-      )
-    
+      (when (< @counter 5000) (do (swap! nodes update-in [name :x] #(+ % (* step-size (first (node-force name)))))
+                                 (swap! nodes update-in [name :y] #(+ % (* step-size (last (node-force name))))))))
     (swap! counter inc)))
 
-(js/setInterval update! 100)
+(js/setInterval update! 1)
 
 (defn render []
   (rdom/render [app]
