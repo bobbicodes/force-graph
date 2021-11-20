@@ -133,3 +133,108 @@ clj꞉force-graph.app꞉> 
 clj꞉force-graph.app꞉> 
 [:g [:line {:x1 485, :y1 72, :x2 485, :y2 72, :stroke "magenta"}] [:line {:x1 375, :y1 30, :x2 375, :y2 30, :stroke "magenta"}] [:line {:x1 697, :y1 845, :x2 697, :y2 845, :stroke "magenta"}] [:line {:x1 881, :y1 75, :x2 881, :y2 75, :stroke "magenta"}] [:line {:x1 797, :y1 807, :x2 797, :y2 807, :stroke "magenta"}] [:line {:x1 234, :y1 787, :x2 234, :y2 787, :stroke "magenta"}]]
 clj꞉force-graph.app꞉> 
+(:nails :planks :bricks :cement :glue :paint)
+clj꞉force-graph.app꞉> 
+2072183116
+clj꞉force-graph.app꞉> 
+2073731891
+clj꞉force-graph.app꞉> 
+2073918489
+clj꞉force-graph.app꞉> 
+2075374370
+clj꞉force-graph.app꞉> 
+2075516449
+clj꞉force-graph.app꞉> 
+2075612244
+clj꞉force-graph.app꞉> 
+2076475894
+clj꞉force-graph.app꞉> 
+2076585602
+clj꞉force-graph.app꞉> 
+2078305728
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+Cannot read properties of null (reading 'getBBox')
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+(:nails :planks :bricks :cement :glue :paint)
+clj꞉force-graph.app꞉> 
+[-15.080660661794605 1.7725050483828966]
+clj꞉force-graph.app꞉> 
+(:nails :planks :bricks :cement :glue :paint)
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+[-15.080660661794605 1.7725050483828966]
+clj꞉force-graph.app꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+Cannot read properties of null (reading 'getBBox')
+clj꞉force-graph.app꞉> 
+:repl/exception!
+; 
+; Execution error (TypeError) at (<cljs repl>:1).
+Cannot read properties of null (reading 'getBBox')
+clj꞉force-graph.app꞉> 
+800640
+clj꞉force-graph.app꞉> 
+1088111
+clj꞉force-graph.app꞉> 
+1236041
+clj꞉force-graph.app꞉> 
+2525333
+clj꞉force-graph.app꞉> 
+2635148
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+370676
+clj꞉force-graph.app꞉> 
+539940
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+403292
+clj꞉force-graph.app꞉> 
+587143
+clj꞉force-graph.app꞉> 
+685308
+clj꞉force-graph.app꞉> 
+805688
+clj꞉force-graph.app꞉> 
+1294608
+clj꞉force-graph.app꞉> 
+0
+clj꞉force-graph.app꞉> 
+138571
+clj꞉force-graph.app꞉> 
+365011
+clj꞉force-graph.app꞉> 
+737565
+clj꞉force-graph.app꞉> 

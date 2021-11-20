@@ -10,53 +10,20 @@
   [x]
   (.sqrt js/Math x))
 
-(def building-supplies
-  {:nails {}
-   :planks {}
-   :bricks {}
-   :cement {}
-   :glue {}
-   :paint {}})
-
-(def hedgehogs
-  {"Animalia" ["Chordata"]
-   "Chordata" ["Mammalia"]
-   "Mammalia" ["Erinaceomorpha"]
-   "Erinaceomorpha" ["Erinaceidae"]
-   "Erinaceidae" ["Erinaceinae"]
-   "Erinaceinae" ["Atelerix" "Erinaceus" "Hemiechinus" "Mesechinus"
-                  "Paraechinus"]
-   "Atelerix" []
-   "Erinaceus" []
-   "Hemiechinus" []
-   "Mesechinus" []
-   "Paraechinus" []})
-
-
-
 (defonce nodes
   (r/atom (into {}
                 (for [name (keys svg/building-supplies)]
-                  {name {:x (rand-int 900) :y (rand-int 900)
+                  {name {:x (rand-int 700) :y (rand-int 700)
                          :width 50}}))))
 
-(into {}
-      (for [name (keys svg/building-supplies)]
-        {name {:x (rand-int 900) :y (rand-int 900)
-               :width 50}}))
-
-@nodes
-
-
-
-(def repulsion 3000) ; adjust for wider/narrower spacing
-(def spring-length 30) ; base resting length of springs
+(def repulsion 10000) ; adjust for wider/narrower spacing
+(def spring-length 50) ; base resting length of springs
 (def step-size 0.0005)
 
 (defn edge? 
   "Returns true if n1 is connected to n2."
   [n1 n2]
-  (contains? (set (get hedgehogs n1)) n2))
+  (contains? (set (get svg/building-supplies n1)) n2))
 
 (defn node-forces 
   "Takes the names of 2 nodes as strings, and outputs
@@ -82,7 +49,7 @@
   "Calculates the aggregated [x y] force values for a node."
   [node]
   (reduce (fn [[x y] [x' y']] [(+ x x') (+ y y')])
-          (remove #(js/isNaN (first %)) (map #(node-forces node %) (keys hedgehogs)))))
+          (remove #(js/isNaN (first %)) (map #(node-forces node %) (keys svg/building-supplies)))))
 
 (node-force "Animalia")
 
@@ -105,13 +72,6 @@
       .getBBox
       .-width))
 
-(:x (get @nodes "Animalia"))
-(:y (get @nodes "Animalia"))
-
-(:x (get @nodes "Chordata"))
-(:y (get @nodes "Chordata"))
-
-
 (defn draw-edges [cx cy]
   (into [:g]
         (let [edges (keys svg/building-supplies)]
@@ -121,10 +81,6 @@
                     :x2 (+ 30 (:x (get @nodes edge)))
                     :y2 (+ 6 (:y (get @nodes edge)))
                     :stroke "magenta" :stroke-width 3}]))))
-
-(get @nodes :nails)
-
-
 
 (defonce counter (r/atom 0))
 
@@ -144,44 +100,21 @@
            [:path {:stroke color :d path
                    :shape-rendering "crispEdges"}]))))
 
-(keys @nodes)
-
 (defn app []
   [:div#app
    [:h1 "Force graph"]
-   [:svg {:width "100%" :view-box "0 0 900 900"
+   [:svg {:width "100%" :view-box "0 0 700 700"
           :shape-rendering "crispEdges"}
-    (draw-edges 410 330)
-    (svg-paths (get svg/stores "Building Supplies") 350 300)
+    (draw-edges 310 350)
+    (svg-paths (get svg/stores "Building Supplies") 250 310)
     (into [:g]  
           (for [node (keys @nodes)]
-            (svg-paths (node svg/building-supplies) (:x (get @nodes node)) (:y (get @nodes node)))))
-      
-    #_(into [:g]
-          (for [name (keys hedgehogs)]
-            (rect (:x (get @nodes name))
-                  (:y (get @nodes name))
-                  (:width (get @nodes name)) 13)))
-    #_(into [:g]
-          (for [name (keys hedgehogs)]
-            (label name (:x (get @nodes name))
-                   (:y (get @nodes name)))))]])
+            (svg-paths (node svg/building-supplies) (:x (get @nodes node)) (:y (get @nodes node)))))]])
             
-(comment
-  
-  @nodes
-  (first (keys hedgehogs))
-
-  (-> js/document
-      (.getElementById "Erinaceidae")
-      .getBBox
-      .-x)
-  )
-
 (defn update! []
-  (doseq [name (keys hedgehogs)]
+  (doseq [name (keys svg/building-supplies)]
     (if (< @counter 20)
-      (swap! nodes assoc-in [name :width] (+ 6 (width name)))
+      (swap! nodes assoc-in [name :width] (+ 6 (:width name)))
       (when (< @counter 5000) (do (swap! nodes update-in [name :x] #(+ % (* step-size (first (node-force name)))))
                                  (swap! nodes update-in [name :y] #(+ % (* step-size (last (node-force name))))))))
     (swap! counter inc)))
