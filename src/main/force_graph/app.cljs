@@ -28,9 +28,9 @@
                   {name {:x (rand-int 350) :y (rand-int 350)
                          :width 80}}))))
 
-(def repulsion 20000) ; adjust for wider/narrower spacing
+(def repulsion 200000) ; adjust for wider/narrower spacing
 (def spring-length 20) ; base resting length of springs
-(def step-size 0.0005)
+(def step-size 0.0001)
 
 (defn edge? 
   "Returns true if n1 is connected to n2."
@@ -47,8 +47,8 @@
         deltay (- (:y j) (:y i))
         d2 (+ (* deltax deltax) (* deltay deltay))
       ;; Coulomb's law -- repulsion varies inversely with square of distance
-        forcex (* (/ repulsion d2) deltax)
-        forcey (* (/ repulsion d2) deltay)
+        forcex (- (* (/ repulsion d2) deltax))
+        forcey (- (* (/ repulsion d2) deltay))
         distance (.sqrt js/Math d2)]
   ;; spring force along edges, follows Hooke's law
     [(+ forcex (when (edge? n1 n2) (* (- distance spring-length) deltax)))
@@ -107,7 +107,7 @@
 (defn app []
   [:div#app
    [:h1 "Force graph"]
-   [:svg {:width "100%" :view-box "0 0 400 400"}
+   [:svg {:width "100%" :view-box "0 0 800 800"}
     (when (< 2 @counter)
       (into [:g]
             (map draw-edges (keys hedgehogs))))
@@ -134,15 +134,13 @@
 
 (defn update! []
   (doseq [name (keys hedgehogs)]
-    (if (< @counter 20)
+    (when (< @counter 30000)
       (swap! nodes assoc-in [name :width] (+ 6 (width name)))
-      (do (swap! nodes update-in [name :x] #(+ % (* step-size (first (node-force name)))))
-          (swap! nodes update-in [name :y] #(+ % (* step-size (last (node-force name))))))
-      )
-    
-    (swap! counter inc)))
+      (swap! nodes update-in [name :x] #(+ % (* step-size (first (node-force name)))))
+      (swap! nodes update-in [name :y] #(+ % (* step-size (last (node-force name)))))
+      (swap! counter inc))))
 
-(js/setInterval update! 100)
+(js/setInterval update! 10)
 
 (defn render []
   (rdom/render [app]
