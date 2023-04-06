@@ -107,7 +107,7 @@
 (defn app []
   [:div#app
    [:h1 "Force graph"]
-   [:svg {:width "100%" :view-box "0 0 800 800"}
+   [:svg {:width "100%" :view-box "-100 -100 800 800"}
     (when (< 2 @counter)
       (into [:g]
             (map draw-edges (keys hedgehogs))))
@@ -134,7 +134,7 @@
 
 (defn update! []
   (doseq [name (keys hedgehogs)]
-    (when (< @counter 30000)
+    (when (< @counter 1000)
       (swap! nodes assoc-in [name :width] (+ 6 (width name)))
       (swap! nodes update-in [name :x] #(+ % (* step-size (first (node-force name)))))
       (swap! nodes update-in [name :y] #(+ % (* step-size (last (node-force name)))))
